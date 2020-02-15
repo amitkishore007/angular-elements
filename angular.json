@@ -119,6 +119,320 @@
           }
         }
       }
+    },
+    "document-management": {
+      "projectType": "library",
+      "root": "projects/document-management",
+      "sourceRoot": "projects/document-management/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/document-management/tsconfig.lib.json",
+            "project": "projects/document-management/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/document-management/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/document-management/src/test.ts",
+            "tsConfig": "projects/document-management/tsconfig.spec.json",
+            "karmaConfig": "projects/document-management/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/document-management/tsconfig.lib.json",
+              "projects/document-management/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "user-management": {
+      "projectType": "library",
+      "root": "projects/user-management",
+      "sourceRoot": "projects/user-management/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/user-management/tsconfig.lib.json",
+            "project": "projects/user-management/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/user-management/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/user-management/src/test.ts",
+            "tsConfig": "projects/user-management/tsconfig.spec.json",
+            "karmaConfig": "projects/user-management/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/user-management/tsconfig.lib.json",
+              "projects/user-management/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "sandbox": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/sandbox",
+      "sourceRoot": "projects/sandbox/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sandbox",
+            "index": "projects/sandbox/src/index.html",
+            "main": "projects/sandbox/src/main.ts",
+            "polyfills": "projects/sandbox/src/polyfills.ts",
+            "tsConfig": "projects/sandbox/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/sandbox/src/favicon.ico",
+              "projects/sandbox/src/assets"
+            ],
+            "styles": [
+              "projects/sandbox/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sandbox/src/environments/environment.ts",
+                  "with": "projects/sandbox/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sandbox:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sandbox:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sandbox:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sandbox/src/test.ts",
+            "polyfills": "projects/sandbox/src/polyfills.ts",
+            "tsConfig": "projects/sandbox/tsconfig.spec.json",
+            "karmaConfig": "projects/sandbox/karma.conf.js",
+            "assets": [
+              "projects/sandbox/src/favicon.ico",
+              "projects/sandbox/src/assets"
+            ],
+            "styles": [
+              "projects/sandbox/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sandbox/tsconfig.app.json",
+              "projects/sandbox/tsconfig.spec.json",
+              "projects/sandbox/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sandbox/e2e/protractor.conf.js",
+            "devServerTarget": "sandbox:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sandbox:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "document-management-app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/document-management-app",
+      "sourceRoot": "projects/document-management-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/document-management-app",
+            "index": "projects/document-management-app/src/index.html",
+            "main": "projects/document-management-app/src/main.ts",
+            "polyfills": "projects/document-management-app/src/polyfills.ts",
+            "tsConfig": "projects/document-management-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/document-management-app/src/favicon.ico",
+              "projects/document-management-app/src/assets"
+            ],
+            "styles": [
+              "projects/document-management-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/document-management-app/src/environments/environment.ts",
+                  "with": "projects/document-management-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "document-management-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "document-management-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "document-management-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/document-management-app/src/test.ts",
+            "polyfills": "projects/document-management-app/src/polyfills.ts",
+            "tsConfig": "projects/document-management-app/tsconfig.spec.json",
+            "karmaConfig": "projects/document-management-app/karma.conf.js",
+            "assets": [
+              "projects/document-management-app/src/favicon.ico",
+              "projects/document-management-app/src/assets"
+            ],
+            "styles": [
+              "projects/document-management-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/document-management-app/tsconfig.app.json",
+              "projects/document-management-app/tsconfig.spec.json",
+              "projects/document-management-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/document-management-app/e2e/protractor.conf.js",
+            "devServerTarget": "document-management-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "document-management-app:serve:production"
+            }
+          }
+        }
+      }
     }},
   "defaultProject": "biz2x-widgets"
 }

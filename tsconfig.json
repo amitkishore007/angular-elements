@@ -17,7 +17,17 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "document-management": [
+        "dist/document-management/document-management",
+        "dist/document-management"
+      ],
+      "user-management": [
+        "dist/user-management/user-management",
+        "dist/user-management"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
